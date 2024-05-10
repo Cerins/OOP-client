@@ -23,7 +23,7 @@ class FriendsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val friendsViewModel =
-            ViewModelProvider(this).get(FriendsViewModel::class.java)
+            ViewModelProvider(this)[FriendsViewModel::class.java]
 
         _binding = FragmentFriendsBinding.inflate(inflater, container, false)
         val root: View = binding.root

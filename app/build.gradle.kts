@@ -10,7 +10,6 @@ android {
     defaultConfig {
         applicationId = "com.example.studybuddy"
         minSdk = 29
-        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 

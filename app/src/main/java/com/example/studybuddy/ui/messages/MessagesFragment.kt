@@ -23,7 +23,7 @@ class MessagesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val messagesViewModel =
-            ViewModelProvider(this).get(MessagesViewModel::class.java)
+            ViewModelProvider(this)[MessagesViewModel::class.java]
 
         _binding = FragmentMessagesBinding.inflate(inflater, container, false)
         val root: View = binding.root
