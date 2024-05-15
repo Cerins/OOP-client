@@ -39,6 +39,8 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        // makes icons their original color
+        binding.navView.itemIconTintList = null
 
         // SUCCESSFULLY fetching data using OkHttp,
         // printing received json in the console

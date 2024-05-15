@@ -16,6 +16,5 @@
 <!--        <item name="colorErrorMain">@color/red_50</item>-->
 <!--        <item name="colorErrorVariant">@color/red_40</item>-->
 <!--        <item name="colorErrorLight">@color/red_10</item>-->
-<!--        TODO: Fix themes -->
     </style>
 </resources>
