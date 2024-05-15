@@ -1,14 +1,14 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt"
-    android:viewportWidth="243"
-    android:viewportHeight="182"
+    android:viewportWidth="108"
+    android:viewportHeight="81"
     android:width="108dp"
     android:height="81dp">
     <group
-        android:translateX="-4403.82"
-        android:translateY="-6038.18">
+        android:translateX="-4443.82"
+        android:translateY="-6068.18">
         <group
-            android:translateX="3636.09"
-            android:translateY="4258.66">
+            android:translateX="3616.09"
+            android:translateY="4238.66">
             <group
                 android:scaleX="0.232756"
                 android:scaleY="0.192118"
@@ -25,8 +25,8 @@
             </group>
         </group>
         <group
-            android:translateX="3646.09"
-            android:translateY="4258.66">
+            android:translateX="3616.09"
+            android:translateY="4238.66">
             <group
                 android:scaleX="0.232756"
                 android:scaleY="0.192118"
