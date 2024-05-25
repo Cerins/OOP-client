@@ -22,17 +22,8 @@ class MessagesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val messagesViewModel =
-            ViewModelProvider(this)[MessagesViewModel::class.java]
-
         _binding = FragmentMessagesBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textMessages
-        messagesViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+        return binding.root
     }
 
     override fun onDestroyView() {
