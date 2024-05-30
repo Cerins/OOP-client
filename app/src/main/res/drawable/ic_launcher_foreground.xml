@@ -1,0 +1,46 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt"
+    android:viewportWidth="243"
+    android:viewportHeight="182"
+    android:width="108dp"
+    android:height="81dp">
+    <group
+        android:translateX="-4403.82"
+        android:translateY="-6038.18">
+        <group
+            android:translateX="3636.09"
+            android:translateY="4258.66">
+            <group
+                android:scaleX="0.232756"
+                android:scaleY="0.192118"
+                android:translateX="822.094"
+                android:translateY="1827.83">
+                <path
+                    android:pathData="M167.43 150.34C102.654 151.381 45.52 187.478 33.39 238.685C19.532 297.183 69.629 353.355 145.23 364.115C145.246 364.205 145.219 364.338 145.212 364.467L144.778 364.486L85.869 419.273L206.899 362.409L205.707 362.446L206.484 361.853L208.218 361.797L206.899 362.409L208.561 362.353L208.561 361.778L208.579 361.778C260.951 350.241 297.668 318.983 307.483 277.549C321.346 219.027 271.187 162.829 195.533 152.109C186.077 150.769 176.678 150.199 167.424 150.348L167.43 150.34Z"
+                    android:fillType="evenOdd"
+                    android:fillColor="#FFFFFF"
+                    android:strokeColor="#C0791B"
+                    android:strokeWidth="15"
+                    android:strokeLineCap="round"
+                    android:strokeLineJoin="round" />
+            </group>
+        </group>
+        <group
+            android:translateX="3646.09"
+            android:translateY="4258.66">
+            <group
+                android:scaleX="0.232756"
+                android:scaleY="0.192118"
+                android:translateX="822.094"
+                android:translateY="1827.83">
+                <path
+                    android:pathData="M304.09 19.957C385.555 21.266 457.41 66.664 472.67 131.067C490.098 204.637 427.093 275.277 332.02 288.807C332 288.92 332.034 289.088 332.043 289.25L332.588 289.273L406.675 358.176L254.455 286.662L255.955 286.709L254.978 285.963L252.797 285.893L254.455 286.662L252.365 286.592L252.365 285.87L252.342 285.87C186.476 271.361 140.302 232.049 127.952 179.94C110.517 106.339 173.6 35.66 268.742 22.17C280.635 20.484 292.455 19.767 304.093 19.954L304.09 19.957Z"
+                    android:fillType="evenOdd"
+                    android:fillColor="#FFFFFF"
+                    android:strokeColor="#C0791B"
+                    android:strokeWidth="20"
+                    android:strokeLineCap="round"
+                    android:strokeLineJoin="round" />
+            </group>
+        </group>
+    </group>
+</vector>

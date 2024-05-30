@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_profile1"
+        android:icon="@drawable/ic_gear"
+        android:title="@string/title_profile" />
+
+    <item
+        android:id="@+id/navigation_search1"
+        android:icon="@drawable/ic_magnifying_glass"
+        android:title="@string/title_search" />
+
+    <item
+        android:id="@+id/navigation_friends1"
+        android:icon="@drawable/ic_friends"
+        android:title="@string/title_friends" />
+
+    <item
+        android:id="@+id/navigation_messages1"
+        android:icon="@drawable/ic_chat"
+        android:title="@string/title_messages" />
+
+</menu>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">StudyBuddy</string>
+    <string name="title_profile">Profils</string>
+    <string name="title_search">Meklēšana</string>
+    <string name="title_friends">Draugi</string>
+    <string name="title_messages">Ziņas</string>
+</resources>
