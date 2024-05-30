@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><!-- res/layout/fragment_login.xml -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
@@ -29,16 +30,18 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.3" />
 
+
     <TextView
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="sans-serif-black"
         android:text="Lietotājvards"
         android:textColor="@color/black"
         android:textSize="32sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/gd_4" />
-
 
     <EditText
         android:id="@+id/etEmail"
@@ -57,17 +60,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvUsername" />
 
+
     <TextView
         android:id="@+id/tvPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-black"
         android:text="Parole"
         android:textColor="@color/black"
         android:textSize="32sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etEmail" />
-
 
     <EditText
         android:id="@+id/etPassword"
@@ -93,6 +98,7 @@
         android:background="@drawable/bg_button"
         android:drawableEnd="@drawable/ic_signin"
         android:drawablePadding="16dp"
+        android:fontFamily="sans-serif-black"
         android:paddingHorizontal="48dp"
         android:text="Ienākt"
         android:textAllCaps="false"
@@ -102,15 +108,23 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="202dp"
+        android:layout_height="45dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_button"
-        android:paddingHorizontal="48dp"
+        android:fontFamily="sans-serif-black"
+        android:padding="0dp"
+        android:paddingHorizontal="0dp"
+        android:paddingStart="0dp"
+
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp"
+        android:paddingEnd="0dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="0dp"
         android:text="Reģistrēties"
         android:textAllCaps="false"
         android:textSize="24sp"
-
         app:layout_constraintEnd_toEndOf="@id/etPassword"
         app:layout_constraintTop_toBottomOf="@id/btnLogin" />
 

@@ -11,6 +11,8 @@
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Messages" />
+        android:fontFamily="sans-serif-black"
+        android:text="Messages"
+        android:textSize="20sp" />
 
 </LinearLayout>

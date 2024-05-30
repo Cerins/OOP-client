@@ -10,6 +10,8 @@
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search" />
+        android:fontFamily="sans-serif-black"
+        android:text="Search"
+        android:textSize="20sp" />
 
 </LinearLayout>

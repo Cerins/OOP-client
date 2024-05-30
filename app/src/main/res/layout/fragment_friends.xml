@@ -11,6 +11,8 @@
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Friends" />
+        android:fontFamily="sans-serif-black"
+        android:text="Friends"
+        android:textSize="20sp" />
 
 </LinearLayout>
