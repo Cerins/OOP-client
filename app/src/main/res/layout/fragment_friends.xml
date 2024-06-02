@@ -17,23 +17,40 @@
         android:text="Sūdzība"
         app:backgroundTint="@null" />
 
+<!--    <TextView-->
+<!--        android:id="@+id/friendTitle"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Draugi"-->
+<!--        android:textAlignment="textStart"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:textSize="50dp"-->
+<!--        android:layout_toLeftOf="@id/reportBtn"/>-->
+
     <TextView
-        android:id="@+id/friendTitle"
-        android:layout_width="match_parent"
+        android:id="@+id/friends_heading"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Draugi"
+        android:textSize="65sp"
+        android:layout_marginTop="-20dp"
+        android:layout_alignParentStart="true"
         android:textAlignment="textStart"
         android:layout_marginStart="20dp"
-        android:textSize="50dp"
-        android:layout_toLeftOf="@id/reportBtn"/>
+        android:padding="5dp"
+        android:shadowColor="#FFF"
+        android:shadowDx="8"
+        android:shadowDy="8"
+        android:shadowRadius="1"
+        android:textColor="@android:color/black" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/friendTitle"
+        android:layout_below="@+id/friends_heading"
         android:layout_marginHorizontal="20dp"
         android:paddingHorizontal="10dp"
-        android:layout_marginVertical="30dp">
+        android:layout_marginVertical="10dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/userList"

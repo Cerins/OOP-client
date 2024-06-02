@@ -14,30 +14,46 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_button"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:text="Izrakstīties"
         app:backgroundTint="@null" />
 
+<!--    <TextView-->
+<!--        android:id="@+id/profile_heading"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Profils"-->
+<!--        android:textAlignment="textStart"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:textSize="50dp"-->
+<!--        android:layout_toLeftOf="@id/btnLogout"/>-->
+
     <TextView
-        android:id="@+id/profileTitle"
-        android:layout_width="match_parent"
+        android:id="@+id/profile_heading"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Profils"
-        android:textAlignment="textStart"
-        android:layout_marginTop="10dp"
+        android:textSize="70sp"
+        android:layout_alignParentStart="true"
+        android:padding="5dp"
+        android:shadowColor="#FFF"
+        android:shadowDx="8"
+        android:shadowDy="8"
+        android:shadowRadius="1"
         android:layout_marginStart="20dp"
-        android:textSize="50dp"
-        android:layout_toLeftOf="@id/btnLogout"/>
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/black" />
 
     <ImageView
         android:id="@+id/profileImg"
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:background="@color/black"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
-        android:layout_below="@id/profileTitle"/>
+        android:layout_below="@id/profile_heading"/>
 
     <TextView
         android:id="@+id/userName"
@@ -50,7 +66,8 @@
         android:textSize="30dp"
         android:textColor="@color/black"
         android:layout_toRightOf="@id/profileImg"
-        android:layout_below="@id/profileTitle"/>
+        android:layout_marginVertical="20dp"
+        android:layout_below="@id/profile_heading"/>
 
     <ScrollView
         android:id="@+id/descriptionScrollview"
