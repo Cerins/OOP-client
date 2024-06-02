@@ -3,7 +3,9 @@ package com.example.studybuddy.ui.profile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.studybuddy.data.locale.DataStoreManager
+import com.example.studybuddy.data.model.RegisterResponse
 import com.example.studybuddy.data.model.UserRequest
+import com.example.studybuddy.data.model.UserResponse
 import com.example.studybuddy.domain.auth.GetUserUseCase
 import com.example.studybuddy.domain.auth.LogoutUseCase
 import com.example.studybuddy.util.Resource
@@ -22,6 +24,9 @@ class ProfileViewModel @Inject constructor(
     private val _logoutResult = MutableStateFlow<Resource<Unit>?>(null)
     val logoutResult: StateFlow<Resource<Unit>?> = _logoutResult
 
+    private val _getUserResult = MutableStateFlow<Resource<UserResponse>?>(null)
+    val getUserResult: StateFlow<Resource<UserResponse>?> = _getUserResult
+
     fun logout() {
         viewModelScope.launch {
             logoutUseCase().collect {
@@ -31,10 +36,9 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun getUser(request: UserRequest) {
-        // TODO
         viewModelScope.launch {
             getUserUseCase(request).collect {
-               // TODO
+                _getUserResult.value = it
             }
         }
     }
