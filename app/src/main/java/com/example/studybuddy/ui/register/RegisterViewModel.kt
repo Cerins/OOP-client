@@ -62,21 +62,21 @@ class RegisterViewModel @Inject constructor(
         }
     }
 
-    fun login(username: String, password: String) {
-        viewModelScope.launch {
-            loginUseCase(username, password).collect { result ->
-                _loginResult.value = result
-            }
-        }
-    }
-
-    fun saveToken(token: String?) {
-        runBlocking {
-            token?.let {
-                dataStoreManager.saveToken(it)
-            }
-        }
-    }
+//    fun login(username: String, password: String) {
+//        viewModelScope.launch {
+//            loginUseCase(username, password).collect { result ->
+//                _loginResult.value = result
+//            }
+//        }
+//    }
+//
+//    fun saveToken(token: String?) {
+//        runBlocking {
+//            token?.let {
+//                dataStoreManager.saveToken(it)
+//            }
+//        }
+//    }
 
 
 

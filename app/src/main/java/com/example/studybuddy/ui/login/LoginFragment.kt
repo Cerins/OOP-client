@@ -48,13 +48,10 @@ class LoginFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.loginResult.collect { token ->
-                    when (token) {
+                viewModel.loginResult.collect { response ->
+                    when (response) {
                         is Resource.Success -> {
-                            runBlocking {
-                                viewModel.saveToken(token.data)
-                                findNavController().navigate(R.id.action_loginFragment_to_navigation_profile1)
-                            }
+                            findNavController().navigate(R.id.action_loginFragment_to_navigation_profile1)
                             Log.d("LoginFragment", "Success...")
                         }
 

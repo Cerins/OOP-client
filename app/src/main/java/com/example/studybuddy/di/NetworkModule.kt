@@ -1,5 +1,6 @@
 package com.example.studybuddy.di
 
+import com.example.studybuddy.data.locale.DataStoreManager
 import com.example.studybuddy.data.remote.ApiService
 import dagger.Module
 import dagger.Provides
@@ -26,9 +27,16 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun provideAuthInterceptor(dataStoreManager: DataStoreManager): AuthInterceptor {
+        return AuthInterceptor(dataStoreManager)
+    }
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor, authInterceptor: AuthInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
+            .addInterceptor(authInterceptor)
             .build()
     }
 

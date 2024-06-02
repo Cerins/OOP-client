@@ -21,9 +21,9 @@ class SplashViewModel @Inject constructor(
     val logoutResult: StateFlow<Resource<String>?> = _token
 
 
-    private fun checkToken() {
+    private fun checkDataStore() {
         viewModelScope.launch {
-            dataStoreManager.clearToken()
+            dataStoreManager.clearDataStore()
         }
     }
 }

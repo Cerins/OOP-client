@@ -3,6 +3,7 @@ package com.example.studybuddy.ui.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.studybuddy.data.locale.DataStoreManager
+import com.example.studybuddy.data.model.LoginResponse
 import com.example.studybuddy.domain.auth.LoginUseCase
 import com.example.studybuddy.domain.auth.LogoutUseCase
 import com.example.studybuddy.util.Resource
@@ -20,8 +21,8 @@ class LoginViewModel @Inject constructor(
     private val dataStoreManager: DataStoreManager
 ) : ViewModel() {
 
-    private val _loginResult = MutableStateFlow<Resource<String>?>(null)
-    val loginResult: StateFlow<Resource<String>?> = _loginResult
+    private val _loginResult = MutableStateFlow<Resource<LoginResponse>?>(null)
+    val loginResult: StateFlow<Resource<LoginResponse>?> = _loginResult
 
     private val _logoutResult = MutableStateFlow<Result<Unit>?>(null)
     val logoutResult: StateFlow<Result<Unit>?> = _logoutResult
@@ -31,14 +32,26 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch {
             loginUseCase(email, password).collect { result ->
                     _loginResult.value = result
+                    if (result is Resource.Success) {
+                        saveToken(result.data?.token)
+                        saveUserId(result.data?.user?.id)
+                    }
             }
         }
     }
 
-    fun saveToken(token: String?) {
+    private fun saveToken(token: String?) {
         runBlocking {
             token?.let {
                 dataStoreManager.saveToken(it)
+            }
+        }
+    }
+
+    private fun saveUserId(userId: Int?) {
+        runBlocking {
+            userId?.let {
+                dataStoreManager.saveUserId(it)
             }
         }
     }

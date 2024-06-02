@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -35,6 +36,8 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.loadUserId()
+
         binding.btnLogout.setOnClickListener {
             viewModel.logout()
         }
@@ -46,7 +49,7 @@ class ProfileFragment : Fragment() {
                         is Resource.Success -> {
                             println("Success")
                             runBlocking {
-                                viewModel.clearToken()
+                                viewModel.clearDataStore()
                                 findNavController().navigate(R.id.action_navigation_profile1_to_loginFragment)
                             }
                         }
@@ -67,6 +70,27 @@ class ProfileFragment : Fragment() {
                 }
             }
         }
-
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.userResult.collect { response ->
+                    when (response) {
+                        is Resource.Success -> {
+                            val user = response.data
+                            binding.userName.text = user?.firstName
+                            binding.description.text = user?.description
+                        }
+                        is Resource.Error -> {
+                            Toast.makeText(requireContext(), "Failed to fetch user", Toast.LENGTH_SHORT).show()
+                        }
+                        is Resource.Loading -> {
+                            // Handle loading state if needed
+                        }
+                        null -> {
+                            // Handle null state if needed
+                        }
+                    }
+                }
+            }
+        }
     }
 }

@@ -158,10 +158,10 @@ class RegisterFragment : Fragment() {
                         }
 
                         is Resource.Success -> {
-                            viewModel.login(
-                                binding.etEmail.text.trim().toString(),
-                                binding.etPassword.text.trim().toString()
-                            )
+//                            viewModel.login(
+//                                binding.etEmail.text.trim().toString(),
+//                                binding.etPassword.text.trim().toString()
+//                            )
                             // login istegi ve giris yap
                             Log.d("RegisterFragment reg", "Success...")
                         }
@@ -187,10 +187,10 @@ class RegisterFragment : Fragment() {
                         }
 
                         is Resource.Success -> {
-                            runBlocking {
-                                viewModel.saveToken(token.data)
-                                findNavController().navigate(R.id.action_registerFragment_to_navigation_profile1)
-                            }
+//                            runBlocking {
+//                                viewModel.saveToken(token.data)
+//                                findNavController().navigate(R.id.action_registerFragment_to_navigation_profile1)
+//                            }
                             Log.d("RegisterFragment", "Success...")
                         }
 
