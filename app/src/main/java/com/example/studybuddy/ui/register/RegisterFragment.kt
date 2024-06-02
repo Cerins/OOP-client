@@ -194,6 +194,7 @@ class RegisterFragment : Fragment() {
                         //   )
                             // login istegi ve giris yap
                             Log.d("RegisterFragment reg", "Success...")
+                            findNavController().navigate(R.id.action_registerFragment_to_navigation_profile1)
                         }
 
                         is Resource.Error -> {
