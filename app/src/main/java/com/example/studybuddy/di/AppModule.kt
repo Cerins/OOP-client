@@ -1,6 +1,8 @@
 package com.example.studybuddy.di
 
 import com.example.studybuddy.data.repo.AuthRepository
+import com.example.studybuddy.data.repo.ProfileRepository
+import com.example.studybuddy.domain.auth.GetUserUseCase
 import com.example.studybuddy.domain.auth.LoginUseCase
 import com.example.studybuddy.domain.auth.LogoutUseCase
 import com.example.studybuddy.domain.auth.PickImageUseCase
@@ -44,5 +46,11 @@ object AppModule {
     @Provides
     fun providePickImageUseCase(): PickImageUseCase {
         return PickImageUseCase()
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetUserUseCase(repository: ProfileRepository): GetUserUseCase {
+        return GetUserUseCase(repository)
     }
 }
