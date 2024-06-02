@@ -28,6 +28,7 @@ import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import com.example.studybuddy.data.model.TagDto
 
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {
@@ -73,48 +74,77 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = ArrayAdapter(
+        val adapter1 = ArrayAdapter(
             requireContext(), R.layout.view_spinner_item, listOf("Student", "Teacher", "Parent")
         )
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spType.adapter = adapter
+        val adapter2 = ArrayAdapter(
+            requireContext(), R.layout.view_spinner_item, listOf("Rīgas Valsts 1. ģimnāzija", "Rīgas Valsts 2. ģimnāzija", "Rīgas Valsts 3. ģimnāzija")
+        )
+
+        val adapter3 = ArrayAdapter(
+            requireContext(), R.layout.view_spinner_item, listOf("16-19", "19-23", "23-")
+        )
+
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spType.adapter = adapter1
+
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spTeaching.adapter = adapter2
+
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spAge.adapter = adapter3
 
         binding.btnRegister.setOnClickListener {
+            val description = binding.etDesc.text.toString().trim()
             val email = binding.etEmail.text.toString().trim()
-            val password = binding.etPassword.text.toString().trim()
             val firstName = binding.etName.text.toString().trim()
             val lastName = binding.etSurname.text.toString().trim()
-            val description = binding.etDesc.text.toString().trim()
-
-            val username = binding.etUsername.text.toString().trim()
-            val phone = "12345678"
-            val age = binding.spAge.id
+            val login = binding.etUsername.text.toString().trim()
+            val password = binding.etPassword.text.toString().trim()
+            val phone = binding.etPhone.text.toString().trim()
 
             val role = when (binding.spType.selectedItemPosition) {
                 1 -> "teacher"
                 2 -> "parent"
                 else -> "student"
             }
-            val teachingInst = binding.spTeaching.id
-            val interests = ""
-            val image = binding.ivProfile.drawable
+
+            val age = when (binding.spAge.selectedItemPosition) {
+                1 -> "19-23"
+                2 -> "23-"
+                else -> "16-19"
+            }
+
+            val establishment = when (binding.spTeaching.selectedItemPosition) {
+                1 -> "Rīgas Valsts 2. ģimnāzija"
+                2 -> "Rīgas Valsts 3. ģimnāzija"
+                else -> "Rīgas Valsts 1. ģimnāzija"
+            }
+
+            val tags = listOf(
+                TagDto(1, age, "age"),
+                TagDto(2, establishment, "establishment"),
+                TagDto(3, "Matemātika", "interests")
+            )
+
+            val image = null // for now
 
             val passwordError =
                 binding.etPassword.text.toString().trim() != binding.etPassword.text.toString()
                     .trim()
             val registerRequest =
                 RegisterRequest(
+                    description,
                     email,
-                    password,
-                    username,
                     firstName,
                     lastName,
-                    description,
+                    login,
+                    password,
                     phone,
                     role,
-                    interests,
-                    "Image"
+                    tags,
+                    null
                 )
             if (passwordError.not()) {
                 viewModel.register(registerRequest)
@@ -158,10 +188,10 @@ class RegisterFragment : Fragment() {
                         }
 
                         is Resource.Success -> {
-//                            viewModel.login(
-//                                binding.etEmail.text.trim().toString(),
-//                                binding.etPassword.text.trim().toString()
-//                            )
+                        //    viewModel.login(
+                        //        binding.etEmail.text.trim().toString(),
+                        //        binding.etPassword.text.trim().toString()
+                        //   )
                             // login istegi ve giris yap
                             Log.d("RegisterFragment reg", "Success...")
                         }
@@ -187,10 +217,10 @@ class RegisterFragment : Fragment() {
                         }
 
                         is Resource.Success -> {
-//                            runBlocking {
-//                                viewModel.saveToken(token.data)
-//                                findNavController().navigate(R.id.action_registerFragment_to_navigation_profile1)
-//                            }
+                        //    runBlocking {
+                        //        viewModel.saveToken(token.data)
+                        //    findNavController().navigate(R.id.action_registerFragment_to_navigation_profile1)
+                        //    }
                             Log.d("RegisterFragment", "Success...")
                         }
 
