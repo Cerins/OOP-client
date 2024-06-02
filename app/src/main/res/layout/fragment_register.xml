@@ -86,6 +86,7 @@
                 android:background="@drawable/bg_et"
                 android:fontFamily="sans-serif-medium"
                 android:hint="XXXXXX"
+                android:textColorHint="@color/gray"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="12dp"
                 android:textColor="@color/black"
@@ -118,8 +119,10 @@
                 android:background="@drawable/bg_et"
                 android:fontFamily="sans-serif-medium"
                 android:hint="XXXXXX"
+                android:textColorHint="@color/gray"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="12dp"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -147,11 +150,14 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/bg_et"
+                android:fontFamily="sans-serif-medium"
                 android:hint="XXXXXX"
+                android:textColorHint="@color/gray"
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="12dp"
                 android:textSize="24sp"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvPassword" />
@@ -178,11 +184,13 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/bg_et"
+                android:fontFamily="sans-serif-medium"
                 android:hint="XXXXXXXXX"
-
+                android:textColorHint="@color/gray"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="12dp"
                 android:textSize="24sp"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvPassword" />
@@ -209,12 +217,14 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/bg_et"
+                android:fontFamily="sans-serif-medium"
                 android:hint="************"
                 android:inputType="textPassword"
-
+                android:textColorHint="@color/gray"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="12dp"
                 android:textSize="24sp"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvPassword" />
@@ -241,11 +251,14 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/bg_et"
+                android:fontFamily="sans-serif-medium"
                 android:hint="************"
+                android:textColorHint="@color/gray"
                 android:inputType="textPassword"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="12dp"
                 android:textSize="24sp"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvPassword" />
@@ -329,9 +342,12 @@
                     android:layout_height="50dp"
                     android:layout_weight="9"
                     android:background="@drawable/bg_et"
-                    android:hint="Add new interest"
+                    android:fontFamily="sans-serif-medium"
+                    android:hint="Pievieno interesi"
+                    android:textColorHint="@color/gray"
                     android:imeOptions="actionDone"
                     android:inputType="text"
+                    android:textColor="@color/black"
                     android:paddingStart="16dp" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -341,7 +357,10 @@
                     android:layout_gravity="end"
                     android:layout_weight="1"
                     android:background="@drawable/bg_button"
-                    android:text="Add" />
+                    android:fontFamily="sans-serif-medium"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:text="Pievienot" />
 
             </LinearLayout>
 
@@ -393,10 +412,12 @@
                 android:fontFamily="sans-serif-medium"
                 android:gravity="start"
                 android:hint="XXXXXX"
+                android:textColorHint="@color/gray"
                 android:lines="5"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="12dp"
                 android:textSize="24sp"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvPassword" />
@@ -414,6 +435,7 @@
                 android:text="Pabeigt reģistrācĳu"
                 android:textAllCaps="false"
                 android:textSize="24sp"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@id/etPassword"
                 app:layout_constraintTop_toBottomOf="@id/etPassword" />
 

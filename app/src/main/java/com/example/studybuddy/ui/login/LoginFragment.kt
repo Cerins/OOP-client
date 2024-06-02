@@ -8,12 +8,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.studybuddy.R
 import com.example.studybuddy.databinding.FragmentLoginBinding
 import com.example.studybuddy.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 @AndroidEntryPoint
@@ -43,29 +46,31 @@ class LoginFragment : Fragment() {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
-        lifecycleScope.launchWhenStarted {
-            viewModel.loginResult.collect { token ->
-                when (token) {
-                    is Resource.Success -> {
-                        runBlocking {
-                            viewModel.saveToken(token.data)
-                            findNavController().navigate(R.id.action_loginFragment_to_navigation_profile1)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.loginResult.collect { token ->
+                    when (token) {
+                        is Resource.Success -> {
+                            runBlocking {
+                                viewModel.saveToken(token.data)
+                                findNavController().navigate(R.id.action_loginFragment_to_navigation_profile1)
+                            }
+                            Log.d("LoginFragment", "Success...")
                         }
-                        Log.d("LoginFragment", "Success...")
-                    }
 
-                    is Resource.Error -> {
-                        Toast.makeText(requireContext(), "An error ocured", Toast.LENGTH_SHORT)
-                            .show()
-                        Log.d("LoginFragment", "Error...")
-                    }
+                        is Resource.Error -> {
+                            Toast.makeText(requireContext(), "An error ocured", Toast.LENGTH_SHORT)
+                                .show()
+                            Log.d("LoginFragment", "Error...")
+                        }
 
-                    is Resource.Loading -> {
-                        Log.d("LoginFragment", "Loading...")
-                    }
+                        is Resource.Loading -> {
+                            Log.d("LoginFragment", "Loading...")
+                        }
 
-                    null -> {
-                        Log.d("LoginFragment", "Null...")
+                        null -> {
+                            Log.d("LoginFragment", "Null...")
+                        }
                     }
                 }
             }

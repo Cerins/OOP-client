@@ -9,8 +9,8 @@ import javax.inject.Inject
 
 class AuthRepository @Inject constructor(private val apiService: ApiService) {
 
-    suspend fun login(email: String, password: String): LoginResponse {
-        return apiService.login(LoginRequest(email, password))
+    suspend fun login(username: String, password: String): LoginResponse {
+        return apiService.login(LoginRequest(username, password))
     }
 
     suspend fun logout() {

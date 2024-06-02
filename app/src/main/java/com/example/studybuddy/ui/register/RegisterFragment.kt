@@ -15,7 +15,9 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.studybuddy.R
 import com.example.studybuddy.data.model.RegisterRequest
@@ -24,6 +26,7 @@ import com.example.studybuddy.databinding.FragmentRegisterBinding
 import com.example.studybuddy.util.Resource
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 @AndroidEntryPoint
@@ -101,8 +104,19 @@ class RegisterFragment : Fragment() {
                 binding.etPassword.text.toString().trim() != binding.etPassword.text.toString()
                     .trim()
             val registerRequest =
-                RegisterRequest(email, password, firstName, lastName, description, phone, role)
-            if (passwordError.not()){
+                RegisterRequest(
+                    email,
+                    password,
+                    username,
+                    firstName,
+                    lastName,
+                    description,
+                    phone,
+                    role,
+                    interests,
+                    "Image"
+                )
+            if (passwordError.not()) {
                 viewModel.register(registerRequest)
             }
         }
@@ -111,74 +125,83 @@ class RegisterFragment : Fragment() {
             viewModel.requestPermissions(listOf("android.permission.CAMERA"))
         }
 
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.permissionRequest.collect { event ->
-                event?.getContentIfNotHandled()?.let { permissions ->
-                    requestPermissionLauncher.launch(permissions.toTypedArray())
-                }
-            }
-        }
-
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.intentFlow.collect { event ->
-                event?.getContentIfNotHandled()?.let { intent ->
-                    if (intent.action == MediaStore.ACTION_IMAGE_CAPTURE) {
-                        takePhotoLauncher.launch(intent)
-                    } else if (intent.action == Intent.ACTION_PICK) {
-                        pickImageLauncher.launch(intent)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.permissionRequest.collect { event ->
+                    event?.getContentIfNotHandled()?.let { permissions ->
+                        requestPermissionLauncher.launch(permissions.toTypedArray())
                     }
                 }
             }
         }
 
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.registerResult.collect { register ->
-                when (register) {
-                    is Resource.Loading -> {
-                        Log.d("RegisterFragment reg", "Loading...")
-                    }
-
-                    is Resource.Success -> {
-                        viewModel.login(
-                            binding.etEmail.text.trim().toString(),
-                            binding.etPassword.text.trim().toString()
-                        )
-                        // login istegi ve giris yap
-                        Log.d("RegisterFragment reg", "Success...")
-                    }
-
-                    is Resource.Error -> {
-                        Toast.makeText(requireContext(), "An error ocured", Toast.LENGTH_SHORT)
-                            .show()
-                        Log.d("RegisterFragment reg", "Error...")
-                    }
-
-                    null -> {}
-                }
-            }
-        }
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.loginResult.collect { token ->
-                when (token) {
-                    is Resource.Loading -> {
-                        Log.d("RegisterFragment", "Loading...")
-                    }
-
-                    is Resource.Success -> {
-                        runBlocking {
-                            viewModel.saveToken(token.data)
-                            findNavController().navigate(R.id.action_registerFragment_to_navigation_profile1)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.intentFlow.collect { event ->
+                    event?.getContentIfNotHandled()?.let { intent ->
+                        if (intent.action == MediaStore.ACTION_IMAGE_CAPTURE) {
+                            takePhotoLauncher.launch(intent)
+                        } else if (intent.action == Intent.ACTION_PICK) {
+                            pickImageLauncher.launch(intent)
                         }
-                        Log.d("RegisterFragment", "Success...")
                     }
+                }
+            }
+        }
 
-                    is Resource.Error -> {
-                        Toast.makeText(requireContext(), "An error ocured", Toast.LENGTH_SHORT)
-                            .show()
-                        Log.d("RegisterFragment", "Error...")
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.registerResult.collect { register ->
+                    when (register) {
+                        is Resource.Loading -> {
+                            Log.d("RegisterFragment reg", "Loading...")
+                        }
+
+                        is Resource.Success -> {
+                            viewModel.login(
+                                binding.etEmail.text.trim().toString(),
+                                binding.etPassword.text.trim().toString()
+                            )
+                            // login istegi ve giris yap
+                            Log.d("RegisterFragment reg", "Success...")
+                        }
+
+                        is Resource.Error -> {
+                            Toast.makeText(requireContext(), "An error ocured", Toast.LENGTH_SHORT)
+                                .show()
+                            Log.d("RegisterFragment reg", "Error...")
+                        }
+
+                        null -> {}
                     }
+                }
+            }
+        }
 
-                    null -> {}
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.loginResult.collect { token ->
+                    when (token) {
+                        is Resource.Loading -> {
+                            Log.d("RegisterFragment", "Loading...")
+                        }
+
+                        is Resource.Success -> {
+                            runBlocking {
+                                viewModel.saveToken(token.data)
+                                findNavController().navigate(R.id.action_registerFragment_to_navigation_profile1)
+                            }
+                            Log.d("RegisterFragment", "Success...")
+                        }
+
+                        is Resource.Error -> {
+                            Toast.makeText(requireContext(), "An error ocured", Toast.LENGTH_SHORT)
+                                .show()
+                            Log.d("RegisterFragment", "Error...")
+                        }
+
+                        null -> {}
+                    }
                 }
             }
         }
@@ -189,17 +212,21 @@ class RegisterFragment : Fragment() {
             binding.editTextNewInterest.text.clear()
         }
 
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.interests.collect { interests ->
-                updateChipGroup(interests)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.interests.collect { interests ->
+                    updateChipGroup(interests)
+                }
             }
         }
 
 
-//        lifecycleScope.launchWhenStarted {
-//            viewModel.token.collect { token ->
-//                token?.let {
-//                    findNavController().navigate(R.id.action_registerFragment_to_homeFragment)
+//        viewLifecycleOwner.lifecycleScope.launch {
+//            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                viewModel.token.collect { token ->
+//                    token?.let {
+//                        findNavController().navigate(R.id.action_registerFragment_to_homeFragment)
+//                    }
 //                }
 //            }
 //        }

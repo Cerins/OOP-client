@@ -7,6 +7,7 @@
     android:layout_height="wrap_content"
     android:singleLine="true"
     android:textSize="32dp"
+    android:textColor="@color/black"
     android:drawablePadding="16dp"
     android:drawableRight="@drawable/ic_down"
     />

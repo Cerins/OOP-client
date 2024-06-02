@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.studybuddy.R
 import com.example.studybuddy.databinding.FragmentProfile1Binding
 import com.example.studybuddy.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 @AndroidEntryPoint
@@ -36,27 +39,31 @@ class ProfileFragment : Fragment() {
             viewModel.logout()
         }
 
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.logoutResult.collect { result ->
-                when (result) {
-                    is Resource.Success -> {
-                        println("Success")
-                        runBlocking {
-                            viewModel.clearToken()
-                            findNavController().navigate(R.id.action_navigation_profile1_to_loginFragment)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.logoutResult.collect { result ->
+                    when (result) {
+                        is Resource.Success -> {
+                            println("Success")
+                            runBlocking {
+                                viewModel.clearToken()
+                                findNavController().navigate(R.id.action_navigation_profile1_to_loginFragment)
+                            }
                         }
-                    }
-                    is Resource.Error -> {
-                        println("Error")
-                        // Show error message
-                    }
-                    is Resource.Loading -> {
-                        println("Loading")
 
-                        // Show loading
-                    }
+                        is Resource.Error -> {
+                            println("Error")
+                            // Show error message
+                        }
 
-                    null -> {}
+                        is Resource.Loading -> {
+                            println("Loading")
+
+                            // Show loading
+                        }
+
+                        null -> {}
+                    }
                 }
             }
         }

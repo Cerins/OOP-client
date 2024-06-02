@@ -9,10 +9,10 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class LoginUseCase @Inject constructor(private val repository: AuthRepository) {
-    suspend operator fun invoke(email: String, password: String): Flow<Resource<String>> = flow{
+    suspend operator fun invoke(username: String, password: String): Flow<Resource<String>> = flow{
         emit(Resource.Loading())
         try {
-            val response = repository.login(email, password)
+            val response = repository.login(username, password)
             emit(Resource.Success(response.token))
         } catch (e: Exception) {
             emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred"))

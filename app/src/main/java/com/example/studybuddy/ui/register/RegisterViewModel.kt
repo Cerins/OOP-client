@@ -62,9 +62,9 @@ class RegisterViewModel @Inject constructor(
         }
     }
 
-    fun login(email: String, password: String) {
+    fun login(username: String, password: String) {
         viewModelScope.launch {
-            loginUseCase(email, password).collect { result ->
+            loginUseCase(username, password).collect { result ->
                 _loginResult.value = result
             }
         }

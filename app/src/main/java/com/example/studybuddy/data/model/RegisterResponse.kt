@@ -2,10 +2,11 @@ package com.example.studybuddy.data.model
 
 data class RegisterResponse(
     val id: Int,
-    val avatarId: Int?,
     val firstName: String,
     val lastName: String,
     val description: String?,
+    val avatarID: Int?,
+    val tags: Set<TagDto>?,
     val role: String,
-    val subject: String?
+    val subject: Int?
 )
