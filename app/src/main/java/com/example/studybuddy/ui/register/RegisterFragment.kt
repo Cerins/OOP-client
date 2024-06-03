@@ -103,6 +103,10 @@ class RegisterFragment : Fragment() {
             val password = binding.etPassword.text.toString().trim()
             val phone = binding.etPhone.text.toString().trim()
 
+            if (!isInputValid(description, email, firstName, lastName, login, password, phone)) {
+                return@setOnClickListener
+            }
+
             val role = when (binding.spType.selectedItemPosition) {
                 1 -> "teacher"
                 2 -> "parent"
@@ -260,6 +264,118 @@ class RegisterFragment : Fragment() {
 //                }
 //            }
 //        }
+    }
+
+    private fun isInputValid(
+        description: String,
+        email: String,
+        firstName: String,
+        lastName: String,
+        login: String,
+        password: String,
+        phone: String
+    ): Boolean {
+
+        if (firstName.isEmpty()) {
+            showToast("First name is required")
+            return false
+        }
+
+        if (firstName.length < 2) {
+            showToast("First name should be at least 2 characters long")
+            return false
+        }
+
+        if (!isAlpha(firstName)) {
+            showToast("First name should not contain numbers or symbols")
+            return false
+        }
+
+        if (lastName.isEmpty()) {
+            showToast("Last name is required")
+            return false
+        }
+
+        if (lastName.length < 2) {
+            showToast("Last name should be at least 2 characters long")
+            return false
+        }
+
+        if (!isAlpha(lastName)) {
+            showToast("Last name should not contain numbers or symbols")
+            return false
+        }
+
+        if (phone.isEmpty()) {
+            showToast("Phone number cannot be empty")
+            return false
+        }
+
+        if (!isValidPhone(phone)) {
+            showToast("Phone number must be exactly 8 digits long")
+            return false
+        }
+
+        if (email.isEmpty()) {
+            showToast("Email is required")
+            return false
+        }
+
+        if (!isValidEmail(email)) {
+            showToast("Invalid email")
+            return false
+        }
+
+        if (login.isEmpty()) {
+            showToast("Username is required")
+            return false
+        }
+
+        if (login.length < 3) {
+            showToast("Username should be at least 3 characters long")
+            return false
+        }
+
+        if (!isAlphaNumeric(login)) {
+            showToast("Username should not contain symbols")
+            return false
+        }
+
+        if (password.isEmpty()) {
+            showToast("Phone number is required")
+            return false
+        }
+
+        if (password.length < 6) {
+            showToast("Password must be at least 6 characters long")
+            return false
+        }
+
+
+        return true
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        val emailPattern = "^[A-Za-z0-9+_.-]+@(.+)$"
+        return email.matches(emailPattern.toRegex())
+    }
+
+    private fun isValidPhone(phone: String): Boolean {
+        return phone.length == 8 && phone.all { it.isDigit() }
+    }
+
+    private fun isAlpha(input: String): Boolean {
+        val alphaPattern = "^[A-Za-z]+$"
+        return input.matches(alphaPattern.toRegex())
+    }
+
+    private fun isAlphaNumeric(input: String): Boolean {
+        val alphaNumericPattern = "^[A-Za-z0-9]+$"
+        return input.matches(alphaNumericPattern.toRegex())
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
     private fun updateChipGroup(interests: List<InterestChip>) {
