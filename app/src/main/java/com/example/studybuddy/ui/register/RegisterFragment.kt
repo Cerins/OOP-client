@@ -272,7 +272,7 @@ class RegisterFragment : Fragment() {
                 setChipStrokeColorResource(R.color.orange_100)
                 chipStrokeColor = resources.getColorStateList(R.color.orange_100, null)
                 chipCornerRadius = 16f
-                chipBackgroundColor = resources.getColorStateList(R.color.white, null)
+                chipBackgroundColor = resources.getColorStateList(R.color.orange_50, null)
                 background = resources.getDrawable(R.drawable.bg_et, null)
                 isCloseIconVisible = interest.isCloseVisible
                 setOnCloseIconClickListener {
