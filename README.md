@@ -34,7 +34,7 @@ Skatiet README.md no https://github.com/Cerins/OOP-server
 
 ### Instalēšana
 
-  1) Klonēt repozitoriju
+1) Klonēt repozitoriju
 
 Klonējiet repozitoriju uz savu lokālo mašīnu, izmantojot SSH vai HTTPS.
 
@@ -50,27 +50,33 @@ HTTPS piemērs:
     git clone https://github.com/Cerins/OOP-client
   ```
 
-  2) Atvērt projektu
+
+
+2) Atvērt projektu
   
   Atveriet projektu Android Studio:
 
-- Pārejiet uz direktoriju, kurā klonējāt repozitoriju.
+  - Pārejiet uz direktoriju, kurā klonējāt repozitoriju.
 
-- Atlasiet OOP-Client mapi.
+  - Atlasiet OOP-Client mapi.
 
-- Noklikšķiniet uz "Open".
+  - Noklikšķiniet uz "Open".
 
-  3) Konfigurēt IP adresi
+
+
+3) Konfigurēt IP adresi
 
 Lai iestatītu savu IP adresi NetworkModule failā, veiciet šādas darbības:
 
-1. Atveriet NetworkModule.kt failu, kas atrodas di paketē.
+  1. Atveriet NetworkModule.kt failu, kas atrodas di paketē.
 
-2. Atrodiet līniju, kurā ir definēts bāzes URL Retrofit veidotājā.
+  2. Atrodiet līniju, kurā ir definēts bāzes URL Retrofit veidotājā.
 
-3. Nomainiet vietturi ar savu faktisko IP adresi, atbilstoši aizmugures risinājumam.
+  3. Nomainiet vietturi ar savu faktisko IP adresi, atbilstoši aizmugures risinājumam.
 
-  4) Būvēt projektu
+
+
+4) Būvēt projektu
 
 Pagaidiet, līdz Gradle būve ir pabeigta. Tas var aizņemt dažas minūtes, jo tiks lejupielādētas un konfigurētas visas atkarības.
 
