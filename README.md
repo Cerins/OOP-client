@@ -1,86 +1,88 @@
-# OOP-client - AndroidStudio project
+# OOP-client - AndroidStudio projekts
 
-## Implementations
+## Implementācijas
 
-- Android Studio Hedgehog (or higher versions)
+- Android Studio Hedgehog (vai jaunākas versijas)
 
-- Kotlin programming language
+- Kotlin programmēšanas valoda
 
 - Gradlew v8.2.2
 
 - OkHttp v4.12.0
 
-- Jetpack for navigation
+- Jetpack navigācijai
 
-- Hilt v2.48 dependency injection library from dagger
+- Hilt v2.48 atkarību injekcijas bibliotēka no Dagger
 
-- Coroutines v1.7.3 for asynchronous code symplifaction
+- Korutīnas v1.7.3 asinhronā koda vienkāršošanai
 
-- Retrofit v2.9.0 for network calls
+- Retrofit v2.9.0 tīkla pieprasījumiem
 
-- Datastore preferences v1.1.1. for storing token and other values
+- Datastore preferences v1.1.1. tokenu un citu vērtību glabāšanai
 
-## Getting started
+## Darba uzsākšana
 
-### Prerequisites
+### Priekšnosacījumi
 
-1. Android Studio: Download and install Android Studio Hedgehog or newer.
+1. Android Studio: Lejupielādējiet un instalējiet Android Studio Hedgehog vai jaunāku versiju.
 
-2. Git: Ensure you have Git installed for cloning the repository.
+2. Git: Pārliecinieties, ka jums ir instalēts Git, lai klonētu repozitoriju.
 
-3. OOP-server: Complete the setup process for the back-end before attempting front-end side.
+3. OOP-serveris: Pabeidziet servera puses uzstādīšanas procesu pirms mēģināt sākt darbu ar klienta puses projektu.
 
-See README.md from https://github.com/Cerins/OOP-server
+Skatiet README.md no https://github.com/Cerins/OOP-server
 
-### Installation
+### Instalēšana
 
-  1) Clone the Repository
+  1) Klonēt repozitoriju
 
-Clone the repository to your local machine using SSH or HTTPS.
+Klonējiet repozitoriju uz savu lokālo mašīnu, izmantojot SSH vai HTTPS.
 
-SSH example:
+SSH piemērs:
 
   ```shell
     git clone git@github.com:Cerins/OOP-client.git
   ```
 
-HTTPS example:
+HTTPS piemērs:
 
   ```shell
     git clone https://github.com/Cerins/OOP-client
   ```
 
-  2) Open the Project
-
-Open the project in Android Studio:
+  2) Atvērt projektu
   
-- Navigate to the directory where you cloned the repository.
-  
-- Select the OOP-Client folder.
-  
-- Click "Open".
+  Atveriet projektu Android Studio:
 
-  3) Configure IP Address
+- Pārejiet uz direktoriju, kurā klonējāt repozitoriju.
 
-To set up your IP address in the NetworkModule file, follow these steps:
+- Atlasiet OOP-Client mapi.
 
-1. Open the NetworkModule.kt file located in the di package.
-2. Find the line where the base URL is defined in the Retrofit builder.
-3. Replace the placeholder with your actual IP address according to the back-end solution.
+- Noklikšķiniet uz "Open".
 
-  4) Build the Project
+  3) Konfigurēt IP adresi
 
-Wait for the Gradle build to complete. This may take a few minutes as it will download and configure all dependencies.
+Lai iestatītu savu IP adresi NetworkModule failā, veiciet šādas darbības:
 
-### Running the Application
+1. Atveriet NetworkModule.kt failu, kas atrodas di paketē.
 
-1. Connect a Device or Start an Emulator
+2. Atrodiet līniju, kurā ir definēts bāzes URL Retrofit veidotājā.
 
-Ensure you have an Android device connected or an Android emulator running.
+3. Nomainiet vietturi ar savu faktisko IP adresi, atbilstoši aizmugures risinājumam.
 
-2. Run the App
+  4) Būvēt projektu
 
-Click the "Run" button in Android Studio or press Shift + F10 to build and run the app on your selected device/emulator
+Pagaidiet, līdz Gradle būve ir pabeigta. Tas var aizņemt dažas minūtes, jo tiks lejupielādētas un konfigurētas visas atkarības.
+
+### Lietotnes palaišana
+
+1. Pievienojiet ierīci vai palaidiet emulatoru
+
+Pārliecinieties, ka jums ir pievienota Android ierīce vai darbojas Android emulators.
+
+2. Palaidiet lietotni
+
+Noklikšķiniet uz "Run" pogas Android Studio vai nospiediet Shift + F10, lai būvētu un palaistu lietotni uz izvēlētās ierīces/emulatora.
 
 ### Papildus informācija:
 
