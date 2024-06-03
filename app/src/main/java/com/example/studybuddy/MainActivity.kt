@@ -1,21 +1,14 @@
 package com.example.studybuddy
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.studybuddy.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
-import java.io.IOException
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -23,42 +16,50 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        supportActionBar?.hide()
+
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)
+                    as NavHostFragment
 
-        val navView: BottomNavigationView = binding.navView
+        val navController = navHostFragment.navController
+//        val appBarConfiguration = AppBarConfiguration(
+//            topLevelDestinationIds = setOf(
+//                R.id.loginFragment,
+//                R.id.registerFragment
+//            )
+//        )
 
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_profile, R.id.navigation_search, R.id.navigation_friends, R.id.navigation_messages
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+//        setupActionBarWithNavController(navController, appBarConfiguration)
+        binding.navView.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.loginFragment, R.id.registerFragment, R.id.splashFragment -> {
+                    binding.navView.visibility = View.GONE
+                }
+
+                else -> {
+                    binding.navView.visibility = View.VISIBLE
+                }
+            }
+        }
+
 
         // makes icons their original color
         binding.navView.itemIconTintList = null
 
-        // SUCCESSFULLY fetching data using OkHttp,
-        // printing received json in the console
-        val client = OkHttpClient()
-        val url = "https://dummyjson.com/products"
-        val request = Request.Builder()
-            .url(url)
-            .build()
-        client.newCall(request).enqueue(object: Callback {
-            override fun onResponse(call: Call, response: Response) {
-                val body = response.body?.string()
-                println(body)
-            }
-            override fun onFailure(call: Call, e: IOException) {
-                println("Failed to execute request")
-            }
-        })
+        setContentView(binding.root)
 
 
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)
+                    as NavHostFragment
+        return navHostFragment.navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
 }

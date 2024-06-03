@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/teal_100"
+    android:paddingTop="10dp">
+
+    <ImageView
+        android:id="@+id/back_button_chat"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_button"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        />
+
+    <TextView
+        android:id="@+id/reciever_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Profils"
+        android:textAlignment="textStart"
+        android:layout_marginStart="10dp"
+        android:textSize="50dp"
+        android:layout_toRightOf="@id/back_button_chat"
+        android:layout_toLeftOf="@id/profile_image"/>
+
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@color/black"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="20dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/linear_layout"
+        android:layout_below="@id/profile_image"
+        android:layout_margin="20dp"
+        android:layout_marginHorizontal="10dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/messagesList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true" />
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:weightSum="100">
+
+        <EditText
+            android:id="@+id/message_box"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:hint="Type something:"
+            android:layout_weight="100"
+            android:padding="6dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/bg_et"/>
+
+        <ImageView
+            android:id="@+id/send_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_button"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            />
+
+    </LinearLayout>
+</RelativeLayout>

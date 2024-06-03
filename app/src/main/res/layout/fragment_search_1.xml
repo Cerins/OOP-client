@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/friends_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Meklēšana"
+        android:textSize="60sp"
+        android:layout_alignParentStart="true"
+        android:shadowColor="#FFF"
+        android:shadowDx="8"
+        android:shadowDy="8"
+        android:shadowRadius="1"
+        android:textColor="@android:color/black" />
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="Search"
+        android:textSize="20sp" />
+
+</LinearLayout>

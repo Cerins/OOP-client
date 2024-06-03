@@ -4,39 +4,69 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.studybuddy.databinding.FragmentFriendsBinding
+import com.example.studybuddy.util.Resource
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class FriendsFragment : Fragment() {
 
-    private var _binding: FragmentFriendsBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private val viewModel: FriendsViewModel by viewModels()
+    private lateinit var binding: FragmentFriendsBinding
+    private lateinit var friendsAdapter: FriendsAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        val friendsViewModel =
-            ViewModelProvider(this)[FriendsViewModel::class.java]
-
-        _binding = FragmentFriendsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textFriends
-        friendsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+        binding = FragmentFriendsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupRecyclerView()
+
+        viewModel.loadUserId()
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.friendsResult.collect { response ->
+                    when (response) {
+                        is Resource.Success -> {
+                            val friends = response.data
+                            friends?.let {
+                                friendsAdapter.updateUsers(it)
+                            }
+                        }
+                        is Resource.Error -> {
+                            Toast.makeText(requireContext(), "Failed to fetch friends", Toast.LENGTH_SHORT).show()
+                        }
+                        is Resource.Loading -> {
+                            // Handle loading state if needed
+                        }
+                        null -> {
+                            // Handle null state if needed
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setupRecyclerView() {
+        friendsAdapter = FriendsAdapter(emptyList())
+        binding.userList.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = friendsAdapter
+        }
     }
 }
