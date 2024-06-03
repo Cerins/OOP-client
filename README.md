@@ -1,6 +1,6 @@
 # OOP-client - AndroidStudio project
 
-Implementations:
+## Implementations
 
 - Android Studio Hedgehog (or higher versions)
 
@@ -22,17 +22,50 @@ Implementations:
 
 ## Getting started
 
-1. 
+### Prerequisites
 
-  1) Download AndroidStudio (Hedgehog or newer).
+1. Android Studio: Download and install Android Studio Hedgehog or newer.
 
-  2) Clone repo from Github to the directory of your choice (usually Desktop):
+2. Git: Ensure you have Git installed for cloning the repository.
 
-  SSH example:
-  
+### Installation
+
+  1) Clone the Repository
+
+Clone the repository to your local machine using SSH or HTTPS.
+
+SSH example:
+
   ```shell
-    git clone git@github.com:Cerins/OOP-server.git
+    git clone git@github.com:Cerins/OOP-client.git
   ```
-  3) Open the project in AndroidStudio and wait for gradle build to finish.
 
-2. 
+HTTPS example:
+
+  ```shell
+    git clone https://github.com/Cerins/OOP-client
+  ```
+
+  2) Open the Project
+
+Open the project in Android Studio:
+  
+- Navigate to the directory where you cloned the repository.
+  
+- Select the OOP-Client folder.
+  
+- Click "Open".
+
+  3) Build the Project
+
+Wait for the Gradle build to complete. This may take a few minutes as it will download and configure all dependencies.
+
+### Running the Application
+
+1. Connect a Device or Start an Emulator
+
+Ensure you have an Android device connected or an Android emulator running.
+
+2. Run the App
+
+Click the "Run" button in Android Studio or press Shift + F10 to build and run the app on your selected device/emulator.
