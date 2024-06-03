@@ -34,7 +34,7 @@ Skatiet README.md no https://github.com/Cerins/OOP-server
 
 ### Instalēšana
 
-1) Klonēt repozitoriju
+#### 1) Klonēt repozitoriju
 
 Klonējiet repozitoriju uz savu lokālo mašīnu, izmantojot SSH vai HTTPS.
 
@@ -52,7 +52,7 @@ HTTPS piemērs:
 
 
 
-2) Atvērt projektu
+#### 2) Atvērt projektu
   
   Atveriet projektu Android Studio:
 
@@ -64,7 +64,7 @@ HTTPS piemērs:
 
 
 
-3) Konfigurēt IP adresi
+#### 3) Konfigurēt IP adresi
 
 Lai iestatītu savu IP adresi NetworkModule failā, veiciet šādas darbības:
 
@@ -76,7 +76,7 @@ Lai iestatītu savu IP adresi NetworkModule failā, veiciet šādas darbības:
 
 
 
-4) Būvēt projektu
+#### 4) Būvēt projektu
 
 Pagaidiet, līdz Gradle būve ir pabeigta. Tas var aizņemt dažas minūtes, jo tiks lejupielādētas un konfigurētas visas atkarības.
 
