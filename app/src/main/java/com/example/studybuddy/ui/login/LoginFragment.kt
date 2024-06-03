@@ -17,7 +17,6 @@ import com.example.studybuddy.databinding.FragmentLoginBinding
 import com.example.studybuddy.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {

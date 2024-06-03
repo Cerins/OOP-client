@@ -16,7 +16,8 @@ class AuthInterceptor @Inject constructor(private val dataStoreManager: DataStor
             dataStoreManager.tokenFlow.first()
         }
 
-        if (token.isNullOrEmpty()) return chain.proceed(chain.request())
+        if (token.isNullOrEmpty() || chain.request().toString().contains("/auth/"))
+            return chain.proceed(chain.request())
 
         val newRequest = chain.request().newBuilder()
             .addHeader("Authorization", "Bearer $token")

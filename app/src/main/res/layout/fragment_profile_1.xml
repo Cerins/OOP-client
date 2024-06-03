@@ -13,29 +13,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_button"
-        android:layout_alignParentEnd="true"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
         android:text="Izrakstīties"
-        app:backgroundTint="@null" />
-
-<!--    <TextView-->
-<!--        android:id="@+id/profile_heading"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Profils"-->
-<!--        android:textAlignment="textStart"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:layout_marginStart="20dp"-->
-<!--        android:textSize="50dp"-->
-<!--        android:layout_toLeftOf="@id/btnLogout"/>-->
+        android:fontFamily="@font/berlin"
+        android:layout_toRightOf="@id/profileHeading"
+        app:backgroundTint="@null"/>
 
     <TextView
-        android:id="@+id/profile_heading"
+        android:id="@+id/profileHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Profils"
-        android:textSize="70sp"
+        android:textSize="60sp"
         android:layout_alignParentStart="true"
         android:padding="5dp"
         android:shadowColor="#FFF"
@@ -44,6 +34,7 @@
         android:shadowRadius="1"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
+        android:fontFamily="@font/berlin"
         android:textColor="@android:color/black" />
 
     <ImageView
@@ -53,7 +44,7 @@
         android:background="@color/black"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
-        android:layout_below="@id/profile_heading"/>
+        android:layout_below="@id/profileHeading"/>
 
     <TextView
     android:id="@+id/userName"
@@ -66,7 +57,7 @@
     android:textColor="@color/black"
     android:layout_toRightOf="@id/profileImg"
     android:layout_marginTop="20dp"
-    android:layout_below="@id/profile_heading"/>
+    android:layout_below="@id/profileHeading"/>
 
     <TextView
         android:id="@+id/userSurname"
@@ -105,7 +96,10 @@
         android:text="School of X city"
         android:textAlignment="textStart"
         android:textColor="@color/black"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:layout_toRightOf="@id/profileImg"
+        android:layout_marginVertical="20dp"
+        android:fontFamily="@font/berlin" />
 
     <ScrollView
         android:id="@+id/descriptionScrollview"
@@ -121,7 +115,8 @@
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="JLDHGKBEGBUSBGIUBSNKGUEBGKUSBGUJLDHGKBEGBUSBGIUBSNKGUEBGKUSBGUJLDHGKBEGBUSBGIUBSNKGUEBGKUSBGUJLDHGKBEGBUSBGIUBSNKGUEBGKUSBGUJLDHGKBEGBUSBGIUBSNKGUEBGKUSBGUJLDHGKBEGBUSBGIUBSNKGUEBGKUSBGUJLDHGKBEGBUSBGIUBSNKGUEBGKUSBGUJLDHGKBEGBUSBGIUBSNKGUEBGKUSBGUJLDHGKBEGBUSBGIUBSNKGUEBGKUSBGUJLDHGKBEGBUSBGIUBSNKGUEBGKUSBGUJLDHGKBEGBUSBGIUBSNKGUEBGKUSBGUJLDHGKBEGBUSBGIUBSNKGUEBGKUSBGUJLDHGKBEGBUSBGIUBSNKGUEBGKUSBGUJLDHGKBEGBUSBGIUBSNKGUEBGKUSBGUJLDHGKBEGBUSBGIUBSNKGUEBGKUSBGUJLDHGKBEGBUSBGIUBSNKGUEBGKUSBGUJLDHGKBEGBUSBGIUBSNKGUEBGKUSBGUJLDHGKBEGBUSBGIUBSNKGUEBGKUSBGU"
+            android:text="Example description"
+            android:fontFamily="@font/berlin"
             android:textColor="@color/black"/>
     </ScrollView>
 

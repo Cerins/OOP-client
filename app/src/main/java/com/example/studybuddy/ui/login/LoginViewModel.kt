@@ -17,16 +17,11 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
-    private val logoutUseCase: LogoutUseCase,
     private val dataStoreManager: DataStoreManager
 ) : ViewModel() {
 
     private val _loginResult = MutableStateFlow<Resource<LoginResponse>?>(null)
     val loginResult: StateFlow<Resource<LoginResponse>?> = _loginResult
-
-    private val _logoutResult = MutableStateFlow<Result<Unit>?>(null)
-    val logoutResult: StateFlow<Result<Unit>?> = _logoutResult
-
 
     fun login(email: String, password: String) {
         viewModelScope.launch {
@@ -55,12 +50,5 @@ class LoginViewModel @Inject constructor(
             }
         }
     }
-
-//    fun logout() {
-//        viewModelScope.launch {
-//            val result = logoutUseCase()
-//            _logoutResult.value = result
-//        }
-//    }
 
 }

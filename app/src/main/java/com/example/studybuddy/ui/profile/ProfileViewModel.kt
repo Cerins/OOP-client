@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.studybuddy.data.locale.DataStoreManager
 import com.example.studybuddy.data.model.User
-import com.example.studybuddy.domain.auth.GetFriendsUseCase
 import com.example.studybuddy.domain.auth.GetUserUseCase
 import com.example.studybuddy.domain.auth.LogoutUseCase
 import com.example.studybuddy.util.Resource

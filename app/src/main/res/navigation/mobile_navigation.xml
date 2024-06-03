@@ -57,9 +57,28 @@
 
     <fragment
         android:id="@+id/navigation_messages1"
-        android:name="com.example.studybuddy.ui.messages.MessagesFragment1"
+        android:name="com.example.studybuddy.ui.messages.MessagesFragment"
         android:label="Messages"
-        tools:layout="@layout/fragment_messages_1" />
+        tools:layout="@layout/fragment_messages">
+            <action
+                android:id="@+id/action_messagesFragment_to_chatFragment"
+                app:destination="@id/chatFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.studybuddy.ui.messages.ChatFragment"
+        android:label="ConversationFragment"
+        tools:layout="@layout/fragment_chat">
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+    </fragment>
+
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.studybuddy.ui.splash.SplashFragment"

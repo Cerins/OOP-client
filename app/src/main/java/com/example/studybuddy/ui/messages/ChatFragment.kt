@@ -4,56 +4,65 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.studybuddy.databinding.FragmentMessagesBinding
+import com.example.studybuddy.databinding.FragmentChatBinding
 import com.example.studybuddy.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MessagesFragment : Fragment() {
+class ChatFragment : Fragment() {
 
     private val viewModel: MessagesViewModel by viewModels()
-    private lateinit var binding: FragmentMessagesBinding
-    private lateinit var messagesAdapter: MessagesAdapter
+    private lateinit var binding: FragmentChatBinding
+    private lateinit var chatAdapter: ChatAdapter
+    private var userId: Int? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMessagesBinding.inflate(inflater, container, false)
+        binding = FragmentChatBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupRecyclerView()
+        userId = arguments?.getInt("userId")
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.filteredFriends.collect { response ->
+            val currentUserId = viewModel.getUserId()
+            currentUserId?.let { id ->
+                setupRecyclerView(id)
+            }
+        }
+
+        userId?.let { id ->
+            viewModel.loadMessages(id)
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            val currentUserId = viewModel.getUserId()
+            currentUserId?.let { id ->
+                viewModel.messagesResult.collect { response ->
                     when (response) {
                         is Resource.Loading -> {
                             // Show loading state if necessary
                         }
 
                         is Resource.Success -> {
-                            val conversations = response.data
-                            conversations?.let {
-                                messagesAdapter.updateUsers(it)
+                            val messages = response.data
+                            messages?.let {
+                                chatAdapter.updateMessages(it, id)
                             }
                         }
 
                         is Resource.Error -> {
-                            Toast.makeText(context, response.message, Toast.LENGTH_LONG).show()
+                            // Handle error state if necessary
                         }
 
                         else -> {}
@@ -61,18 +70,13 @@ class MessagesFragment : Fragment() {
                 }
             }
         }
-
-        viewModel.loadUserId()
     }
 
-    private fun setupRecyclerView() {
-        messagesAdapter = MessagesAdapter(emptyList()) { user ->
-            val action = MessagesFragmentDirections.actionMessagesFragmentToChatFragment(user.id)
-            findNavController().navigate(action)
-        }
-        binding.conversationsList.apply {
+    private fun setupRecyclerView(id: Int) {
+        chatAdapter = ChatAdapter(id, emptyList())
+        binding.messagesList.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = messagesAdapter
+            adapter = chatAdapter
         }
     }
 }

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- res/layout/fragment_login.xml -->
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="16dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView
-        android:id="@+id/messages_heading"
+        android:id="@+id/messagesHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ziņas"
@@ -21,12 +21,19 @@
         android:shadowRadius="1"
         android:textColor="@android:color/black" />
 
-    <Button
-        android:id="@+id/btnLogout"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="Messages"
-        android:textSize="20sp" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/messagesHeading"
+        android:layout_marginHorizontal="20dp"
+        android:paddingHorizontal="10dp"
+        android:layout_marginVertical="10dp">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/conversationsList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/user_layout"
+            android:scrollbarAlwaysDrawVerticalTrack="true"/>
+    </ScrollView>
 </LinearLayout>

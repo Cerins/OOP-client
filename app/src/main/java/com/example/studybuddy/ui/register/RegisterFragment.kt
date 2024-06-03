@@ -21,14 +21,13 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.studybuddy.R
 import com.example.studybuddy.data.model.RegisterRequest
+import com.example.studybuddy.data.model.TagDto
 import com.example.studybuddy.databinding.DialogSelectImageBinding
 import com.example.studybuddy.databinding.FragmentRegisterBinding
 import com.example.studybuddy.util.Resource
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import com.example.studybuddy.data.model.TagDto
 
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {
