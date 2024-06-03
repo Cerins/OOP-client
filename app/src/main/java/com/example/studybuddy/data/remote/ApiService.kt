@@ -3,6 +3,7 @@ package com.example.studybuddy.data.remote
 import com.example.studybuddy.data.model.LoginRequest
 import com.example.studybuddy.data.model.LoginResponse
 import com.example.studybuddy.data.model.MessageDto
+import com.example.studybuddy.data.model.MessageRequest
 import com.example.studybuddy.data.model.RegisterRequest
 import com.example.studybuddy.data.model.RegisterResponse
 import com.example.studybuddy.data.model.User
@@ -34,4 +35,7 @@ interface ApiService {
 
     @GET("/users/{id}/conversations")
     suspend fun getConversations(@Path("id") id: Int): ArrayList<Int>
+
+    @POST("/messages")
+    suspend fun createMessage(@Body request: MessageRequest): MessageDto
 }

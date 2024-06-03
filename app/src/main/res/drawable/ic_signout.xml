@@ -13,10 +13,16 @@
             android:fillColor="#FF000000"
             android:pathData="M12.938,0.004L12.832,8.56L42.777,8.56L42.777,42.78L12.832,42.78L12.832,51.336L51.331,51.336L51.331,0.003L12.938,0.003L12.938,0.004Z" />
 
+        <group
+            android:rotation="180"
+            android:translateX="38.5"
+            android:translateY="51.5"
+            >
             <path
                 android:fillColor="#FF000000"
                 android:fillType="nonZero"
                 android:pathData="M-0.001,29.949L21.387,29.949L12.832,38.504L25.665,38.504L38.498,25.671L25.665,12.838L12.832,12.838L21.387,21.393L-0.001,21.393L-0.001,29.949Z" />
+        </group>
     </group>
 
 </vector>

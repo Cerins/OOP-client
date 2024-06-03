@@ -5,6 +5,7 @@ import com.example.studybuddy.data.repo.MessageRepository
 import com.example.studybuddy.data.repo.UserRepository
 import com.example.studybuddy.domain.auth.GetConversationsUseCase
 import com.example.studybuddy.domain.auth.GetFriendsUseCase
+import com.example.studybuddy.domain.auth.CreateMessageUseCase
 import com.example.studybuddy.domain.auth.GetMessagesUseCase
 import com.example.studybuddy.domain.auth.GetUserUseCase
 import com.example.studybuddy.domain.auth.LoginUseCase
@@ -74,5 +75,11 @@ object AppModule {
     @Provides
     fun provideGetConversationsUseCase(repository: MessageRepository): GetConversationsUseCase {
         return GetConversationsUseCase(repository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideCreateMessageUseCase(repository: MessageRepository): CreateMessageUseCase {
+        return CreateMessageUseCase(repository)
     }
 }

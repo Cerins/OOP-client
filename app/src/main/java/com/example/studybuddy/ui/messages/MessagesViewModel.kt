@@ -5,7 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.studybuddy.data.locale.DataStoreManager
 import com.example.studybuddy.data.model.MessageDto
+import com.example.studybuddy.data.model.MessageRequest
 import com.example.studybuddy.data.model.User
+import com.example.studybuddy.domain.auth.CreateMessageUseCase
 import com.example.studybuddy.domain.auth.GetConversationsUseCase
 import com.example.studybuddy.domain.auth.GetMessagesUseCase
 import com.example.studybuddy.domain.auth.GetUserUseCase
@@ -25,6 +27,7 @@ class MessagesViewModel @Inject constructor(
     private val messagesUseCase: GetMessagesUseCase,
     private val conversationsUseCase: GetConversationsUseCase,
     private val userUseCase: GetUserUseCase,
+    private val messageUseCase: CreateMessageUseCase,
     private val dataStoreManager: DataStoreManager
 ) : ViewModel() {
 
@@ -33,6 +36,12 @@ class MessagesViewModel @Inject constructor(
 
     private val _filteredFriends = MutableStateFlow<Resource<ArrayList<User>>?>(null)
     val filteredFriends: StateFlow<Resource<ArrayList<User>>?> = _filteredFriends
+
+    private val _userResult = MutableStateFlow<Resource<User>?>(null)
+    val userResult: StateFlow<Resource<User>?> = _userResult
+
+    private val _messageResult = MutableStateFlow<Resource<MessageDto>?>(null)
+    val messageResult: StateFlow<Resource<MessageDto>?> = _messageResult
 
     suspend fun getUserId(): Int? {
         return dataStoreManager.userFlow.first()
@@ -43,6 +52,22 @@ class MessagesViewModel @Inject constructor(
             val userId = dataStoreManager.userFlow.first()
             userId?.let {
                 getConversations(it)
+            }
+        }
+    }
+
+    fun getUser(id: Int) {
+        viewModelScope.launch {
+            userUseCase(id).collect { result ->
+                _userResult.value = result
+            }
+        }
+    }
+
+    fun createMessage(request: MessageRequest) {
+        viewModelScope.launch {
+            messageUseCase(request).collect { result ->
+                _messageResult.value = result
             }
         }
     }

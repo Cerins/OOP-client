@@ -15,6 +15,7 @@
         android:background="@drawable/bg_button"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
+        android:drawableEnd="@drawable/ic_signout"
         android:text="Izrakstīties"
         android:fontFamily="@font/berlin"
         android:layout_toRightOf="@id/profileHeading"

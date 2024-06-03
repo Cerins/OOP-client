@@ -57,6 +57,11 @@ class ChatAdapter(private var currentUserId: Int, private var messagesList: List
         val receiveMessage = itemView.findViewById<TextView>(R.id.receive_message)
     }
 
+    fun addMessage(newMessage: MessageDto) {
+        messagesList.toMutableList().add(newMessage)
+        notifyDataSetChanged()
+    }
+
     fun updateMessages(newMessages: List<MessageDto>, userId: Int) {
         currentUserId = userId
         messagesList = newMessages
