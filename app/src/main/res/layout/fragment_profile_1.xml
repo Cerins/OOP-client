@@ -56,18 +56,56 @@
         android:layout_below="@id/profile_heading"/>
 
     <TextView
-        android:id="@+id/userName"
+    android:id="@+id/userName"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Name"
+    android:textAlignment="textStart"
+    android:layout_marginStart="20dp"
+    android:textSize="30dp"
+    android:textColor="@color/black"
+    android:layout_toRightOf="@id/profileImg"
+    android:layout_marginTop="20dp"
+    android:layout_below="@id/profile_heading"/>
+
+    <TextView
+        android:id="@+id/userSurname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Name"
-        android:textAlignment="textStart"
-        android:layout_marginTop="70dp"
+        android:layout_below="@id/userName"
         android:layout_marginStart="20dp"
-        android:textSize="30dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@id/profileImg"
+        android:text="Surname"
+        android:textAlignment="textStart"
         android:textColor="@color/black"
-        android:layout_toRightOf="@id/profileImg"
-        android:layout_marginVertical="20dp"
-        android:layout_below="@id/profile_heading"/>
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/userYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userSurname"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/profileImg"
+        android:text="XX.year"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/userSchool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userYear"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@id/profileImg"
+        android:text="School of X city"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
 
     <ScrollView
         android:id="@+id/descriptionScrollview"
@@ -87,16 +125,24 @@
             android:textColor="@color/black"/>
     </ScrollView>
 
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroupInterestsProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_below="@id/descriptionScrollview"
+        app:singleLine="false" />
 
     <Button
         android:id="@+id/editProfileBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_button"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="0dp"
         android:layout_marginStart="20dp"
         android:text="Rediģēt profilu"
         app:backgroundTint="@null"
-        android:layout_below="@id/descriptionScrollview"/>
+        android:layout_below="@id/chipGroupInterestsProfile"/>
 
 </RelativeLayout>
