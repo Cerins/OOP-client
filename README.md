@@ -28,11 +28,11 @@ Implementations:
 
   2) Clone repo from Github to the directory of your choice (usually Desktop):
 
-    SSH example:
+  SSH example:
   
-    ```shell
+  ```shell
     git clone git@github.com:Cerins/OOP-server.git
-    ```
+  ```
   3) Open the project in AndroidStudio and wait for gradle build to finish.
 
 2. 
