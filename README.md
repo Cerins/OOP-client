@@ -80,4 +80,11 @@ Ensure you have an Android device connected or an Android emulator running.
 
 2. Run the App
 
-Click the "Run" button in Android Studio or press Shift + F10 to build and run the app on your selected device/emulator.
+Click the "Run" button in Android Studio or press Shift + F10 to build and run the app on your selected device/emulator
+
+### Papildus informācija:
+
+    Daļa no “Back-End” funkcionalitātēm vēl netiek atbalstīta “Front-End” pusē;
+    Darbs tika izstrādāts grupā.
+    Projekts balstīts uz projektējumu, kas izstrādāts "Programminženierija" kursa ietvaros. Dokuments papildināts ar izvietojuma un programmas modeļu klašu diagrammu: https://docs.google.com/document/d/1Yi3KF1tdhZ42VxTFy1Twajkgzo7QjPu6B03mGTWt80s/edit?usp=sharing
+
