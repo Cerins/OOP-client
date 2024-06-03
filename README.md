@@ -28,6 +28,8 @@
 
 2. Git: Ensure you have Git installed for cloning the repository.
 
+3. OOP-server: Complete the setup process for the back-end before attempting front-end side.
+
 ### Installation
 
   1) Clone the Repository
@@ -56,7 +58,15 @@ Open the project in Android Studio:
   
 - Click "Open".
 
-  3) Build the Project
+  3) Configure IP Address
+
+To set up your IP address in the NetworkModule file, follow these steps:
+
+1. Open the NetworkModule.kt file located in the di package.
+2. Find the line where the base URL is defined in the Retrofit builder.
+3. Replace the placeholder with your actual IP address according to the back-end solution.
+ 
+  4) Build the Project
 
 Wait for the Gradle build to complete. This may take a few minutes as it will download and configure all dependencies.
 
