@@ -3,13 +3,34 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <LinearLayout
+        android:id="@+id/reply_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:padding="8dp"
+        android:background="@drawable/bg_button"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="-7dp">
+
+        <TextView
+            android:id="@+id/replied_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray"
+            android:textSize="14sp" />
+    </LinearLayout>
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:background="@drawable/bg_button"
         android:layout_marginEnd="40dp"
         android:layout_marginVertical="5dp"
         android:layout_marginStart="10dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reply_container">
 
         <TextView
             android:id="@+id/receive_message"
@@ -18,7 +39,6 @@
             android:text="This is a received message"
             android:textColor="@color/black"
             android:padding="8dp"
-
             android:textSize="18sp"/>
     </RelativeLayout>
 

@@ -3,68 +3,73 @@ package com.example.studybuddy.ui.messages
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.studybuddy.R
 import androidx.recyclerview.widget.RecyclerView
 import com.example.studybuddy.data.model.MessageDto
 
-class ChatAdapter(private var currentUserId: Int, private var messagesList: List<MessageDto>):
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ChatAdapter(
+    private var currentUserId: Int,
+    var messagesList: List<MessageDto>
+): RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {
 
-    private val ITEM_RECEIVE = 1;
-    private val ITEM_SENT = 2;
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        if(viewType == 1) {
-            val view: View = LayoutInflater.from(parent.context).inflate(R.layout.receive, parent, false)
-            return ReceiveViewHolder(view)
-        } else {
-            val view: View = LayoutInflater.from(parent.context).inflate(R.layout.sent, parent, false)
-            return SentViewHolder(view)
-        }
+    inner class ChatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val sentMessage: TextView? = itemView.findViewById(R.id.sent_message)
+        val receivedMessage: TextView? = itemView.findViewById(R.id.receive_message)
+        val replyContainer: LinearLayout = itemView.findViewById(R.id.reply_container)
+        val repliedMessage: TextView = itemView.findViewById(R.id.replied_message)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val currentMessage = messagesList[position]
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
+        return ChatViewHolder(view)
+    }
 
-        if(holder.javaClass == SentViewHolder::class.java) {
-            val viewHolder = holder as SentViewHolder
-            viewHolder.sentMessage.text = currentMessage.text
+    override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
+        val message = messagesList[position]
+
+        if (message.senderId == currentUserId) {
+            holder.sentMessage?.text = message.text
+            holder.sentMessage?.visibility = View.VISIBLE
+            holder.receivedMessage?.visibility = View.GONE
         } else {
-            val viewHolder = holder as ReceiveViewHolder
-            viewHolder.receiveMessage.text = currentMessage.text
+            holder.receivedMessage?.text = message.text
+            holder.receivedMessage?.visibility = View.VISIBLE
+            holder.sentMessage?.visibility = View.GONE
+        }
+
+        if (message.respondsToId != null) {
+            val repliedMessage = messagesList.find { it.id == message.respondsToId }
+            holder.replyContainer.visibility = View.VISIBLE
+            holder.repliedMessage.text = repliedMessage?.text
+        } else {
+            holder.replyContainer.visibility = View.GONE
+        }
+
+        holder.itemView.setOnClickListener {
+            // Handle click if necessary
         }
     }
 
     override fun getItemViewType(position: Int): Int {
         val currentMessage = messagesList[position]
-
-        return if(currentUserId == currentMessage.senderId) {
-            ITEM_SENT
+        return if (currentMessage.senderId == currentUserId) {
+            R.layout.sent
         } else {
-            ITEM_RECEIVE
+            R.layout.receive
         }
     }
 
-    override fun getItemCount(): Int {
-        return messagesList.size
-    }
-
-    class SentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val sentMessage = itemView.findViewById<TextView>(R.id.sent_message)
-    }
-    class ReceiveViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val receiveMessage = itemView.findViewById<TextView>(R.id.receive_message)
-    }
-
-    fun addMessage(newMessage: MessageDto) {
-        messagesList.toMutableList().add(newMessage)
-        notifyDataSetChanged()
-    }
+    override fun getItemCount(): Int = messagesList.size
 
     fun updateMessages(newMessages: List<MessageDto>, userId: Int) {
-        currentUserId = userId
         messagesList = newMessages
         notifyDataSetChanged()
+    }
+
+    fun addMessage(message: MessageDto) {
+        messagesList = messagesList + message
+        notifyItemInserted(messagesList.size - 1)
     }
 }

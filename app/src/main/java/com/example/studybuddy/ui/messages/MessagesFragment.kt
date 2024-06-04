@@ -62,9 +62,11 @@ class MessagesFragment : Fragment() {
             }
         }
 
-        viewModel.loadUserId()
+        viewModel.loadConversations()
     }
 
+    // Sets everything up for the RecyclerView in the fragment_messages.xml
+    // It uses the MessagesAdapter for that
     private fun setupRecyclerView() {
         messagesAdapter = MessagesAdapter(emptyList()) { user ->
             val action = MessagesFragmentDirections.actionMessagesFragmentToChatFragment(user.id)
