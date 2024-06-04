@@ -81,26 +81,37 @@ class ProfileFragment : Fragment() {
                             binding.userName.text = user?.firstName
                             binding.description.text = user?.description
                             binding.userSurname.text = user?.lastName
-                            binding.userYear.text = buildString {
-                                append("Vecums:")
-                                append(user?.tags?.findLast { it.type == "age" }?.name)
-                            }
-                            binding.userSchool.text = user?.tags?.findLast { it.type == "establishment" }?.name
-                            Log.i("All tags", user?.tags.toString())
-                            val tagsInt = user?.tags?.filter { it.type == "interests" }
-                            if (tagsInt != null) {
-                                for (interest in tagsInt.iterator()) {
-                                    val chip = Chip(requireContext()).apply {
-                                        text = interest.name
-                                        setChipStrokeWidthResource(R.dimen.border)
-                                        setChipStrokeColorResource(R.color.orange_100)
-                                        chipStrokeColor = resources.getColorStateList(R.color.orange_100, null)
-                                        chipCornerRadius = 16f
-                                        chipBackgroundColor = resources.getColorStateList(R.color.orange_50, null)
-                                        background = resources.getDrawable(R.drawable.bg_et, null)
-                                    }
-                                    binding.chipGroupInterestsProfile.addView(chip)
+                            if (user?.tags!!.isNotEmpty()) {
+                                binding.userYear.text = buildString {
+                                    append("Vecums:")
+                                    append(user?.tags?.findLast { it?.type == "age" }?.name)
                                 }
+                                binding.userSchool.text =
+                                    user?.tags?.findLast { it?.type == "establishment" }?.name
+                                Log.i("All tags", user?.tags.toString())
+                                val tagsInt = user?.tags?.filter { it?.type == "interests" }
+                                if (tagsInt != null) {
+                                    for (interest in tagsInt.iterator()) {
+                                        val chip = Chip(requireContext()).apply {
+                                            text = interest?.name
+                                            setChipStrokeWidthResource(R.dimen.border)
+                                            setChipStrokeColorResource(R.color.orange_100)
+                                            chipStrokeColor = resources.getColorStateList(
+                                                R.color.orange_100,
+                                                null
+                                            )
+                                            chipCornerRadius = 16f
+                                            chipBackgroundColor =
+                                                resources.getColorStateList(R.color.orange_50, null)
+                                            background =
+                                                resources.getDrawable(R.drawable.bg_et, null)
+                                        }
+                                        binding.chipGroupInterestsProfile.addView(chip)
+                                    }
+                                }
+                            } else {
+                                binding.userYear.text = ""
+                                binding.userSchool.text = ""
                             }
                         }
                         is Resource.Error -> {

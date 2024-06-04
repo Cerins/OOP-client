@@ -130,15 +130,15 @@
         android:layout_below="@id/descriptionScrollview"
         app:singleLine="false" />
 
-    <Button
-        android:id="@+id/editProfileBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_button"
-        android:layout_marginTop="0dp"
-        android:layout_marginStart="20dp"
-        android:text="Rediģēt profilu"
-        app:backgroundTint="@null"
-        android:layout_below="@id/chipGroupInterestsProfile"/>
+<!--    <Button-->
+<!--        android:id="@+id/editProfileBtn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/bg_button"-->
+<!--        android:layout_marginTop="0dp"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:text="Rediģēt profilu"-->
+<!--        app:backgroundTint="@null"-->
+<!--        android:layout_below="@id/chipGroupInterestsProfile"/>-->
 
 </RelativeLayout>

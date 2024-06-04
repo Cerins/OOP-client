@@ -7,7 +7,7 @@ data class RegisterResponse(
     val login: String,
     val description: String?,
     val avatarID: Int?,
-    val tags: ArrayList<TagDto>?,
+    val tags: List<TagDto?>,
     val role: String,
-    val subject: Int?
+    val subject: String?
 )

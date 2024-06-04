@@ -7,16 +7,16 @@
     android:layout_height="match_parent"
     android:paddingTop="30dp">
 
-    <Button
-        android:id="@+id/reportBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_et"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="20dp"
-        android:text="Sūdzība"
-        app:backgroundTint="@null"
-        android:layout_toRightOf="@id/friendsHeading"/>
+<!--    <Button-->
+<!--        android:id="@+id/reportBtn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/bg_et"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:text="Sūdzība"-->
+<!--        app:backgroundTint="@null"-->
+<!--        android:layout_toRightOf="@id/friendsHeading"/>-->
 
     <TextView
         android:id="@+id/friendsHeading"

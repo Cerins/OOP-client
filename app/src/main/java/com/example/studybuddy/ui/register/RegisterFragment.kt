@@ -138,16 +138,16 @@ class RegisterFragment : Fragment() {
                     .trim()
             val registerRequest =
                 RegisterRequest(
-                    description,
-                    email,
-                    firstName,
-                    lastName,
-                    login,
-                    password,
-                    phone,
-                    role,
-                    tags,
-                    null
+                    description = description,
+                    email= email,
+                    firstName = firstName,
+                    lastName = lastName,
+                    login = login,
+                    password = password,
+                    phone = phone,
+                    role = role,
+                    tags = tags,
+                    picture = null
                 )
             if (passwordError.not()) {
                 viewModel.register(registerRequest)

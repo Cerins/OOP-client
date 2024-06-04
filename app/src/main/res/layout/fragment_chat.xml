@@ -6,24 +6,30 @@
     android:background="@color/teal_100"
     android:paddingTop="10dp">
 
-    <ImageView
-        android:id="@+id/back_button_chat"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/bg_button"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        />
+<!--    <ImageView-->
+<!--        android:id="@+id/back_button_chat"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:background="@drawable/bg_button"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        />-->
 
     <TextView
         android:id="@+id/reciever_name"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profils"
+        android:text="Saņēmējs"
+        android:textSize="50sp"
+        android:layout_alignParentStart="true"
         android:textAlignment="textStart"
-        android:layout_marginStart="10dp"
-        android:textSize="50dp"
-        android:layout_toRightOf="@id/back_button_chat"
+        android:layout_marginStart="20dp"
+        android:padding="5dp"
+        android:shadowColor="#FFF"
+        android:shadowDx="8"
+        android:shadowDy="8"
+        android:shadowRadius="1"
+        android:textColor="@android:color/black"
         android:layout_toLeftOf="@id/profile_image"/>
 
     <ImageView
