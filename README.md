@@ -72,9 +72,9 @@ Lai iestatītu savu IP adresi NetworkModule failā, veiciet šādas darbības:
 
   2. Atrodiet līniju, kurā ir definēts bāzes URL Retrofit veidotājā:
 
-    ```
-     private const val BASE_URL = "http://insert-IP-address-here:8080"
-    ```
+  ```
+   private const val BASE_URL = "http://insert-IP-address-here:8080"
+  ```
 
   4. Nomainiet vietturi ar savu faktisko IP adresi, atbilstoši aizmugures risinājumam.
 
