@@ -70,9 +70,13 @@ Lai iestatītu savu IP adresi NetworkModule failā, veiciet šādas darbības:
 
   1. Atveriet NetworkModule.kt failu, kas atrodas di paketē.
 
-  2. Atrodiet līniju, kurā ir definēts bāzes URL Retrofit veidotājā.
+  2. Atrodiet līniju, kurā ir definēts bāzes URL Retrofit veidotājā:
 
-  3. Nomainiet vietturi ar savu faktisko IP adresi, atbilstoši aizmugures risinājumam.
+    ```
+     private const val BASE_URL = "http://insert-IP-address-here:8080"
+    ```
+
+  4. Nomainiet vietturi ar savu faktisko IP adresi, atbilstoši aizmugures risinājumam.
 
 
 
