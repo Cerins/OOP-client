@@ -22,6 +22,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.studybuddy.R
 import com.example.studybuddy.data.model.RegisterRequest
 import com.example.studybuddy.data.model.TagDto
+import com.example.studybuddy.data.model.TagRequest
 import com.example.studybuddy.databinding.DialogSelectImageBinding
 import com.example.studybuddy.databinding.FragmentRegisterBinding
 import com.example.studybuddy.util.Resource
@@ -94,6 +95,30 @@ class RegisterFragment : Fragment() {
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spAge.adapter = adapter3
 
+        val role = when (binding.spType.selectedItemPosition) {
+            1 -> "teacher"
+            2 -> "parent"
+            else -> "student"
+        }
+
+        val age = when (binding.spAge.selectedItemPosition) {
+            1 -> "19-23"
+            2 -> "23-"
+            else -> "16-19"
+        }
+
+        val establishment = when (binding.spTeaching.selectedItemPosition) {
+            1 -> "Rīgas Valsts 2. ģimnāzija"
+            2 -> "Rīgas Valsts 3. ģimnāzija"
+            else -> "Rīgas Valsts 1. ģimnāzija"
+        }
+
+        var tags = listOf(
+            TagRequest(age, "age"),
+            TagRequest(establishment, "establishment"),
+            TagRequest("Matemātika", "interests")
+        )
+
         binding.btnRegister.setOnClickListener {
             val description = binding.etDesc.text.toString().trim()
             val email = binding.etEmail.text.toString().trim()
@@ -106,30 +131,6 @@ class RegisterFragment : Fragment() {
             if (!isInputValid(description, email, firstName, lastName, login, password, phone)) {
                 return@setOnClickListener
             }
-
-            val role = when (binding.spType.selectedItemPosition) {
-                1 -> "teacher"
-                2 -> "parent"
-                else -> "student"
-            }
-
-            val age = when (binding.spAge.selectedItemPosition) {
-                1 -> "19-23"
-                2 -> "23-"
-                else -> "16-19"
-            }
-
-            val establishment = when (binding.spTeaching.selectedItemPosition) {
-                1 -> "Rīgas Valsts 2. ģimnāzija"
-                2 -> "Rīgas Valsts 3. ģimnāzija"
-                else -> "Rīgas Valsts 1. ģimnāzija"
-            }
-
-            val tags = listOf(
-                TagDto(1, age, "age"),
-                TagDto(2, establishment, "establishment"),
-                TagDto(3, "Matemātika", "interests")
-            )
 
             val image = null // for now
 
@@ -242,6 +243,7 @@ class RegisterFragment : Fragment() {
 
         binding.buttonAddInterest.setOnClickListener {
             val newInterest = binding.editTextNewInterest.text.toString()
+            tags = tags + TagRequest(newInterest, "interests")
             viewModel.addInterest(newInterest)
             binding.editTextNewInterest.text.clear()
         }
@@ -286,10 +288,10 @@ class RegisterFragment : Fragment() {
             return false
         }
 
-        if (!isAlpha(firstName)) {
-            showToast("First name should not contain numbers or symbols")
-            return false
-        }
+//        if (!isAlpha(firstName)) {
+//            showToast("First name should not contain numbers or symbols")
+//            return false
+//        }
 
         if (lastName.isEmpty()) {
             showToast("Last name is required")
@@ -301,10 +303,10 @@ class RegisterFragment : Fragment() {
             return false
         }
 
-        if (!isAlpha(lastName)) {
-            showToast("Last name should not contain numbers or symbols")
-            return false
-        }
+//        if (!isAlpha(lastName)) {
+//            showToast("Last name should not contain numbers or symbols")
+//            return false
+//        }
 
         if (phone.isEmpty()) {
             showToast("Phone number cannot be empty")
@@ -378,9 +380,9 @@ class RegisterFragment : Fragment() {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun updateChipGroup(interests: List<InterestChip>) {
+    private fun updateChipGroup(interests: List<TagRequest>) {
         binding.chipGroupInterests.removeAllViews()
-        for (interest in interests.sortedByDescending { it.isCloseVisible }) {
+        for (interest in interests) {
             val chip = Chip(requireContext()).apply {
                 text = interest.name
                 setChipStrokeWidthResource(R.dimen.border)
@@ -389,7 +391,7 @@ class RegisterFragment : Fragment() {
                 chipCornerRadius = 16f
                 chipBackgroundColor = resources.getColorStateList(R.color.orange_50, null)
                 background = resources.getDrawable(R.drawable.bg_et, null)
-                isCloseIconVisible = interest.isCloseVisible
+                isCloseIconVisible = true
                 setOnCloseIconClickListener {
                     viewModel.removeInterest(interest.name)
                 }

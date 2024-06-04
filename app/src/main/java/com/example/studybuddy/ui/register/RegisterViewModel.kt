@@ -7,6 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.studybuddy.data.locale.DataStoreManager
 import com.example.studybuddy.data.model.RegisterRequest
 import com.example.studybuddy.data.model.RegisterResponse
+import com.example.studybuddy.data.model.TagDto
+import com.example.studybuddy.data.model.TagRequest
 import com.example.studybuddy.domain.auth.LoginUseCase
 import com.example.studybuddy.domain.auth.PickImageUseCase
 import com.example.studybuddy.domain.auth.RegisterUseCase
@@ -44,13 +46,12 @@ class RegisterViewModel @Inject constructor(
 
     private val _interests = MutableStateFlow(
         listOf(
-            InterestChip("Matemātika", true),
-            InterestChip("Latviešu val.", true),
-            InterestChip("Ķīmĳa", true),
-            InterestChip("+", false)
+            TagRequest("Matemātika", "interests"),
+            TagRequest("Latviešu val.", "interests"),
+            TagRequest( "Ķīmĳa", "interests")
         )
     )
-    val interests: StateFlow<List<InterestChip>> get() = _interests
+    val interests: StateFlow<List<TagRequest>> get() = _interests
 
 
     fun register(request: RegisterRequest) {
@@ -107,7 +108,7 @@ class RegisterViewModel @Inject constructor(
         if (interest.isNotBlank()) {
             _interests.update { currentList ->
                 if (!currentList.map { it.name }.contains(interest)) {
-                    currentList + InterestChip(interest)
+                    currentList + TagRequest(interest, "interests")
                 } else {
                     currentList
                 }
@@ -117,7 +118,7 @@ class RegisterViewModel @Inject constructor(
 
     fun removeInterest(interest: String) {
         _interests.update { currentList ->
-            currentList - InterestChip(interest)
+            currentList - TagRequest(interest, "interests")
         }
     }
 

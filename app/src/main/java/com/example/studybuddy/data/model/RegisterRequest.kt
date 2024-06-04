@@ -10,6 +10,6 @@ data class RegisterRequest(
     val description: String?,
     val phone: String,
     val role: String,
-    val tags: List<TagDto?>,
+    val tags: List<TagRequest?>,
     val picture: String?
 )
